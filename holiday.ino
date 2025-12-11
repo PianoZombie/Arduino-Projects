@@ -3,6 +3,21 @@ Random16 rnd;
 /*
  */
 
+// Function used to only light
+void lightUpOnly(int x){
+  // Loops through all the lights
+  for (int i = 2; i < 8; i++){
+    // if the pin number matches the one inputted in the function, it will light up
+    if (i == x){
+      digitalWrite(i, HIGH);
+    }
+    // otherwise keep it off
+    else{
+      digitalWrite(i, LOW);
+    }
+  }
+}
+
 
 void setup(){
   pinMode(2, OUTPUT); // green
@@ -16,13 +31,15 @@ void setup(){
 }
 
 void loop() {
-  int num = analogRead(A0); // The potentiometer will determine how long the delays are
+  int num = analogRead(A5); // The potentiometer will determine how long the delays are
 
-  if (digitalRead(8) == LOW){ // If button not pressed
+  // If button not pressed
+  if (digitalRead(8) == LOW){ 
     // Lights up lights from left to right
     for (int i = 2; i < 8; i++){
       digitalWrite(i, HIGH); 
       delay(num);
+      Serial.print(num);
     }
     
     // Dims lights from right to left
@@ -32,20 +49,29 @@ void loop() {
     }
   }
   else {
-    int random = rnd.get(2, 8); // generates a random number from 2 - 7
-
-    // The loop will cycle through all the lights (represented by i)
-    for (int i = 2; i < 8; i++){
-      
-      // if i is the same as the random number it will light up
-      if (i == random){
-        digitalWrite(i, HIGH);
-      }
-      // otherwise just leave it off
-      else {
-        digitalWrite(i, LOW);
+    // If the potentiometer is all the way down
+    if (num < 300){ 
+      int random = rnd.get(2, 8); // generates a random number from 2 - 7
+      lightUpOnly(random);
+      delay(1000);
+    }
+    else {
+      // These are intervals. Individual lights will light up depending on how much you turn it
+      if (num >= 900){
+        lightUpOnly(8);
+      }else if (num >= 800){
+        lightUpOnly(7);
+      }else if (num >= 700){
+        lightUpOnly(6);
+      }else if (num >= 600){
+        lightUpOnly(5);
+      }else if (num >= 500){
+        lightUpOnly(4);
+      }else if (num >= 400){
+        lightUpOnly(3);
+      }else if (num >= 300){
+        lightUpOnly(2);
       }
     }
-    delay(num);
-  }
+  } 
 }
