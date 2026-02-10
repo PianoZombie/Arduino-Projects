@@ -1,7 +1,7 @@
 int debug1 = 3; // Lights up when a dot is registered. When the button is held it'll turn off and switch to debug2, since a dash is registered instead.
 int debug2 = 4; // lights up when a dash is registered
 int input = 5;
-char symbol = "";
+String symbol = "";
 bool write = false; // by default the arduino shouldn't print anything because the user hasnt pressed the button yet
 String message = ""; // the cummalative dots and dashes
 
@@ -13,7 +13,7 @@ void setup() {
     pinMode(input, INPUT);
     pinMode(debug1, OUTPUT);
     pinMode(debug2, OUTPUT);
-    Serial.begin(9600);
+    Serial.begin(115200);
 }
 
 void loop() {
@@ -46,8 +46,8 @@ void loop() {
     // If the button was released right after a hold,
     if (write){
       message += symbol;
+      //Serial.println("\n\n\n\n\n\n\n\n\n\n\n"); // <- clears the screen
       Serial.println(message); // print the registered symbol
-      Serial.println(symbol);
       write = false; // then prevent the arduino from printing anything again.
     }
   }
