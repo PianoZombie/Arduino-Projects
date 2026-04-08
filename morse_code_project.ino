@@ -73,7 +73,7 @@ void loop() {
     // If the button was released right after a hold,
     if (write){
       message += symbol; // add the registered symbol to the message
-     // Serial.println("\n\n\n\n\n\n\n\n\n\n\n"); // <- clears the screen
+      Serial.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); // <- clears the screen
       Serial.println(message); // print the new message
       //length += 1;
       //Serial.println(length);
@@ -84,12 +84,14 @@ void loop() {
   if (!buttonReleased){
     tone(outpin, 500); // play a 500 hz tone
 
-    if (millis() - time >= 1000){
+    if (millis() - time >= 650){
+      tone(outpin, 200);
       digitalWrite(debug1, HIGH);
       digitalWrite(debug2, HIGH);
       symbol = " / "; // denotes a space between words.
     }
-    else if (millis() - time >= 500){
+    else if (millis() - time >= 450){
+      tone(outpin, 350);
       digitalWrite(debug1, LOW);
       digitalWrite(debug2, LOW);
       symbol = " "; // denotes the end of a letter.
@@ -113,7 +115,6 @@ void loop() {
     String letters = "";
     for (int i = 0; i < message.length(); i++){
       if (message[i] == ' '){ // Spaces will denote that there is a letter that needs to be translated.
-        Serial.println(code);
         for (int j = 0; j < 39; j++){
           // Compares the current set of dots and dashes against every valid code.
           // If it finds a match it'll add it's corresponding letter. Otherwise nothing will be added.
