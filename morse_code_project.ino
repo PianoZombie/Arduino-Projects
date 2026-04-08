@@ -87,7 +87,7 @@ void loop() {
     if (millis() - time >= 1000){
       digitalWrite(debug1, HIGH);
       digitalWrite(debug2, HIGH);
-      symbol = " N "; // denotes a space between words.
+      symbol = " / "; // denotes a space between words.
     }
     else if (millis() - time >= 500){
       digitalWrite(debug1, LOW);
@@ -124,7 +124,7 @@ void loop() {
         }
         code = ""; // resets the variable so it doesn't accidentally grab dots and dashes from a previous letter
       }
-      else if (message[i] == 'N'){
+      else if (message[i] == '/'){
         letters += " ";
       }
       else {
