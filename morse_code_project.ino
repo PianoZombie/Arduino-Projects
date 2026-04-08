@@ -85,8 +85,8 @@ void loop() {
     tone(outpin, 500); // play a 500 hz tone
 
     if (millis() - time >= 1000){
-      digitalWrite(debug1, LOW);
-      digitalWrite(debug2, LOW);
+      digitalWrite(debug1, HIGH);
+      digitalWrite(debug2, HIGH);
       symbol = " N "; // denotes a space between words.
     }
     else if (millis() - time >= 500){
