@@ -26,7 +26,6 @@ String letter[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
 String symbol = ""; 
 bool write = false; // by default the arduino shouldn't print anything because the user hasnt pressed the button yet
 String message = ""; // the cummalative dots and dashes
-// int length = 0; // Tracks the length of the morse code.
 
 unsigned long time = 0; // Will be used to track how long a button is held for.
 int buttonPrevState = 0; // The current state will constantly be compared to the previous state (this variable) in order to know when to keep track of how long the button has been held.
@@ -75,8 +74,6 @@ void loop() {
       message += symbol; // add the registered symbol to the message
       Serial.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); // <- clears the screen
       Serial.println(message); // print the new message
-      //length += 1;
-      //Serial.println(length);
       write = false; // then prevent the arduino from printing anything again
     }
   }
