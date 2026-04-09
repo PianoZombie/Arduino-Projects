@@ -81,7 +81,7 @@ void loop() {
   if (!buttonReleased){
     tone(outpin, 500); // play a 500 hz tone
 
-    if (millis() - time >= 650){
+    if (millis() - time >= 750){
       tone(outpin, 200);
       digitalWrite(debug1, HIGH);
       digitalWrite(debug2, HIGH);
